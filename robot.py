@@ -38,5 +38,6 @@ class ROBOT:
 
     def Think(self):
         self.nn.Update()
+        ## Consider removing this print statement in the future
         self.nn.Print()
     
