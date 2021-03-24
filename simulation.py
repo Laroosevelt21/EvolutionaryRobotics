@@ -8,7 +8,11 @@ import time
 
 class SIMULATION:
 
-    def __init__(self):
+    def __init__(self, directOrGUI):
+        if(directOrGUI == "DIRECT"):
+            p.connect(p.DIRECT)
+        else:
+            p.connect(p.GUI)        
         self.world = WORLD()
         self.robot = ROBOT()
 
@@ -19,6 +23,9 @@ class SIMULATION:
             self.robot.Think()
             self.robot.Act(t)
             time.sleep(c.sleepTime)
+
+    def Get_Fitness(self):
+        self.robot.Get_Fitness()
     
     def __del__(self):
         ##SENSOR.Save_Values(self)
