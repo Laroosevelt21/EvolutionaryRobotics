@@ -15,4 +15,5 @@ gravity = -9.8
 sleepTime = 1.0/1000.0
 
 ##Fitness Evaluation
-numberOfGenerations = numpy.zeros(10)
+numberOfGenerations = 10
+populationSize = 10
