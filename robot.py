@@ -9,13 +9,13 @@ import os
 class ROBOT:
 
     def __init__(self, solutionID):
-        ##self.solutionID = solutionID
+        self.solutionID = solutionID
         self.robot = p.loadURDF("body.urdf")
         pyrosim.Prepare_To_Simulate("body.urdf")
         self.Prepare_To_Sense()
         self.Prepare_To_Act()
-        self.nn = NEURAL_NETWORK("brain" + str(solutionID) + ".nndf")
-        os.system("del brain" + str(solutionID) + ".nndf")
+        self.nn = NEURAL_NETWORK("brain" + str(self.solutionID) + ".nndf")
+        os.system("del brain" + str(self.solutionID) + ".nndf")
         
 
     def Prepare_To_Sense(self):
@@ -44,11 +44,11 @@ class ROBOT:
         ## Consider removing this print statement in the future
         ##self.nn.Print()
 
-    def Get_Fitness(self, solutionID):
+    def Get_Fitness(self):
         stateOfLinkZero = p.getLinkState(self.robot,0)
         positionOfLinkZero = stateOfLinkZero[0]
         xCoordinateOfLinkZero = positionOfLinkZero[0]
-        f = open("tmp" + str(solutionID) + ".txt", "w")
+        f = open("tmp" + str(self.solutionID) + ".txt", "w")
         f.write(str(xCoordinateOfLinkZero))
         f.close()
-        os.system("rename" + " " + "tmp" + str(solutionID) + ".txt" + " " + "fitness" + str(solutionID) + ".txt")
+        os.system("rename" + " " + "tmp" + str(self.solutionID) + ".txt" + " " + "fitness" + str(self.solutionID) + ".txt")

@@ -27,8 +27,8 @@ class SIMULATION:
             if(self.directOrGUI == "GUI"):
                 time.sleep(c.sleepTime)
 
-    def Get_Fitness(self, solutionID):
-        self.robot.Get_Fitness(solutionID)
+    def Get_Fitness(self):
+        self.robot.Get_Fitness()
     
     def __del__(self):
         ##SENSOR.Save_Values(self)

@@ -20,16 +20,17 @@ class SOLUTION:
         self.Create_World()
         self.Create_Body()
         self.Create_Brain(self.myID)
-        os.system("start /B python simulate.py " + directOrGUI + " " + str(self.myID))        
+        os.system("start /B python simulate.py " + directOrGUI + " " + str(self.myID))
+        time.sleep(0.5)
 
     def Wait_For_Simulation_To_End(self):
-        iteration = 0
+        ##iteration = 0
         while not os.path.exists("fitness" + str(self.myID) + ".txt"):
             time.sleep(1)
-            print("while loop")
-            iteration = iteration + 1
-            if(iteration > 10):
-                break
+            ##print("while loop")
+            ##iteration = iteration + 1
+            ##if(iteration > 10):
+                ##break
         f = open("fitness" + str(self.myID) + ".txt", "r")
         self.fitness = float(f.readline())
         ##print("read: fitness" + str(self.myID) + ".txt")
