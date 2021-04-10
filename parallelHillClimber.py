@@ -8,15 +8,13 @@ class PARALLEL_HILL_CLIMBER:
     def __init__(self):
         os.system("del brain*.nndf")
         os.system("del fitness*.txt")
+        os.system("del body*.urdf")
+        os.system("del world*.sdf")
         self.parents = {}
         self.nextAvailableID = 0
         for parent in range(c.populationSize):
             self.parents[parent]=SOLUTION(self.nextAvailableID)
-            ##print("nextAvailableID = " + str(self.nextAvailableID))
             self.nextAvailableID = self.nextAvailableID+1
-            
-            
-        
 
     def Evolve(self):
         self.Evaluate(self.parents)
@@ -35,7 +33,6 @@ class PARALLEL_HILL_CLIMBER:
         for i in self.parents.keys():
             self.children[i] = copy.deepcopy(self.parents[i])
             self.children[i].Set_ID(self.nextAvailableID)
-            ##print("nextAvailableID = " + str(self.nextAvailableID))
             self.nextAvailableID = self.nextAvailableID+1
 
 
@@ -66,6 +63,5 @@ class PARALLEL_HILL_CLIMBER:
                 bestParent = self.parents[p]
             else:
                 bestParent = self.parents[p+1]
-        ##print(bestParent.fitness)
         bestParent.Start_Simulation("GUI")
         

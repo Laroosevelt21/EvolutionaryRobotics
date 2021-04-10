@@ -5,17 +5,19 @@ import pybullet as p
 import pybullet_data
 from pyrosim.neuralNetwork import NEURAL_NETWORK
 import os
+import constants as c
 
 class ROBOT:
 
     def __init__(self, solutionID):
         self.solutionID = solutionID
-        self.robot = p.loadURDF("body.urdf")
-        pyrosim.Prepare_To_Simulate("body.urdf")
+        self.robot = p.loadURDF("body" + str(self.solutionID) + ".urdf")
+        pyrosim.Prepare_To_Simulate("body" + str(self.solutionID) + ".urdf")
         self.Prepare_To_Sense()
         self.Prepare_To_Act()
         self.nn = NEURAL_NETWORK("brain" + str(self.solutionID) + ".nndf")
         os.system("del brain" + str(self.solutionID) + ".nndf")
+        os.system("del body" + str(self.solutionID) + ".urdf")
         
 
     def Prepare_To_Sense(self):
@@ -36,13 +38,11 @@ class ROBOT:
         for neuronName in self.nn.Get_Neuron_Names():
             if self.nn.Is_Motor_Neuron(neuronName):
                 jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
-                desiredAngle = self.nn.Get_Value_Of(neuronName)
+                desiredAngle = (c.motorJointRange*self.nn.Get_Value_Of(neuronName))
                 self.motors[jointName].Set_Value(self.robot, desiredAngle)
 
     def Think(self):
         self.nn.Update()
-        ## Consider removing this print statement in the future
-        ##self.nn.Print()
 
     def Get_Fitness(self):
         stateOfLinkZero = p.getLinkState(self.robot,0)
