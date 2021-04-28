@@ -13,10 +13,10 @@ numMotorNeurons = 8
 motorJointRange = 0.4
 
 ##Simulation/Environment
-timeSteps = 2000
+timeSteps = 1000
 gravity = -9.8
 sleepTime = 1.0/1000.0
 
 ##Fitness Evaluation
-numberOfGenerations = 20
-populationSize = 50
+numberOfGenerations = 1
+populationSize = 1

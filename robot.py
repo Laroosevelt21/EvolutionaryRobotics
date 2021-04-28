@@ -44,11 +44,12 @@ class ROBOT:
     def Think(self):
         self.nn.Update()
 
-    def Get_Fitness(self):
-        stateOfLinkZero = p.getLinkState(self.robot,0)
-        positionOfLinkZero = stateOfLinkZero[0]
-        xCoordinateOfLinkZero = positionOfLinkZero[0]
-        f = open("tmp" + str(self.solutionID) + ".txt", "w")
-        f.write(str(xCoordinateOfLinkZero))
+    def Get_Fitness(self, fitnessID):
+        self.fitnessID = fitnessID
+        basePositionAndOrientation = p.getBasePositionAndOrientation(self.robot)
+        basePosition = basePositionAndOrientation[0]
+        xPosition = basePosition[0]
+        f = open("tmp" + str(self.fitnessID) + ".txt", "w")
+        f.write(str(xPosition))
         f.close()
-        os.system("rename" + " " + "tmp" + str(self.solutionID) + ".txt" + " " + "fitness" + str(self.solutionID) + ".txt")
+        os.system("rename" + " " + "tmp" + str(self.fitnessID) + ".txt" + " " + "fitness" + str(self.fitnessID) + ".txt")
