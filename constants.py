@@ -18,5 +18,5 @@ gravity = -9.8
 sleepTime = 1.0/1000.0
 
 ##Fitness Evaluation
-numberOfGenerations = 1
-populationSize = 1
+numberOfGenerations = 6
+populationSize = 2

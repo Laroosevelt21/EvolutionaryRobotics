@@ -24,7 +24,7 @@ class SOLUTION:
 
     def Wait_For_Simulation_To_End(self):
 ##        increment = 0
-        while not os.path.exists("fitness" + str(self.myID+9) + ".txt"):
+        while not os.path.exists("fitness" + str(self.myID*10+9) + ".txt"):
             time.sleep(0.5)
 ##            print("while loop")
 ##            increment = increment +1
